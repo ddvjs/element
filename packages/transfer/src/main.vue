@@ -42,6 +42,7 @@
 </template>
 
 <script>
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
   import ElButton from 'element-ui/packages/button';
   import Emitter from 'element-ui/src/mixins/emitter';
   import Locale from 'element-ui/src/mixins/locale';
@@ -51,7 +52,7 @@
   export default {
     name: 'ElTransfer',
 
-    mixins: [Emitter, Locale, Migrating],
+    mixins: [PopperOptions, Emitter, Locale, Migrating],
 
     components: {
       TransferPanel,

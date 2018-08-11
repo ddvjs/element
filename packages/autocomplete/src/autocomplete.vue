@@ -63,11 +63,12 @@
   import Migrating from 'element-ui/src/mixins/migrating';
   import { generateId } from 'element-ui/src/utils/util';
   import Focus from 'element-ui/src/mixins/focus';
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
 
   export default {
     name: 'ElAutocomplete',
 
-    mixins: [Emitter, Focus('input'), Migrating],
+    mixins: [PopperOptions, Emitter, Focus('input'), Migrating],
 
     inheritAttrs: false,
 

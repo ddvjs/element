@@ -204,6 +204,7 @@
   import DateTable from '../basic/date-table';
   import ElInput from 'element-ui/packages/input';
   import ElButton from 'element-ui/packages/button';
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
 
   const advanceDate = (date, amount) => {
     return new Date(new Date(date).getTime() + amount);
@@ -220,7 +221,7 @@
   };
 
   export default {
-    mixins: [Locale],
+    mixins: [PopperOptions, Locale],
 
     directives: { Clickoutside },
 

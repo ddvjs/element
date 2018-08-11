@@ -34,11 +34,12 @@
 <script>
   import { hasClass } from 'element-ui/src/utils/dom';
   import Migrating from 'element-ui/src/mixins/migrating';
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
 
   export default {
     name: 'ElRate',
 
-    mixins: [Migrating],
+    mixins: [PopperOptions, Migrating],
 
     inject: {
       elForm: {

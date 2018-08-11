@@ -46,6 +46,7 @@
 <script>
   import ElCollapseTransition from 'element-ui/src/transitions/collapse-transition';
   import Emitter from 'element-ui/src/mixins/emitter';
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
   import { generateId } from 'element-ui/src/utils/util';
 
   export default {
@@ -53,7 +54,7 @@
 
     componentName: 'ElCollapseItem',
 
-    mixins: [Emitter],
+    mixins: [PopperOptions, Emitter],
 
     components: { ElCollapseTransition },
 

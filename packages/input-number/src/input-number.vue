@@ -53,10 +53,11 @@
   import ElInput from 'element-ui/packages/input';
   import Focus from 'element-ui/src/mixins/focus';
   import RepeatClick from 'element-ui/src/directives/repeat-click';
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
 
   export default {
     name: 'ElInputNumber',
-    mixins: [Focus('input')],
+    mixins: [PopperOptions, Focus('input')],
     inject: {
       elForm: {
         default: ''

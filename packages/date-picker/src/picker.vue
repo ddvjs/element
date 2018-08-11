@@ -86,6 +86,7 @@ import { formatDate, parseDate, isDateObject, getWeekNumber } from './util';
 import { customerPopper } from 'element-ui/src/utils/vue-popper';
 import Emitter from 'element-ui/src/mixins/emitter';
 import ElInput from 'element-ui/packages/input';
+import PopperOptions from 'element-ui/src/mixins/popper-options';
 
 const poperMixins = customerPopper('reference');
 
@@ -316,7 +317,7 @@ const validator = function(val) {
 };
 
 export default {
-  mixins: [Emitter, poperMixins],
+  mixins: [PopperOptions, Emitter, poperMixins],
 
   inject: {
     elForm: {

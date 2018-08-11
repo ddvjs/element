@@ -2,6 +2,7 @@ import ElCheckbox from 'element-ui/packages/checkbox';
 import ElTag from 'element-ui/packages/tag';
 import objectAssign from 'element-ui/src/utils/merge';
 import { getPropByPath } from 'element-ui/src/utils/util';
+import PopperOptions from 'element-ui/src/mixins/popper-options';
 
 let columnIdSeed = 1;
 
@@ -138,6 +139,7 @@ const parseMinWidth = (minWidth) => {
 
 export default {
   name: 'ElTableColumn',
+  mixins: [PopperOptions],
 
   props: {
     type: {

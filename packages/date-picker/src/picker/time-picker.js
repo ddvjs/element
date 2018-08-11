@@ -1,9 +1,10 @@
 import Picker from '../picker';
 import TimePanel from '../panel/time';
 import TimeRangePanel from '../panel/time-range';
+import PopperOptions from 'element-ui/src/mixins/popper-options';
 
 export default {
-  mixins: [Picker],
+  mixins: [PopperOptions, Picker],
 
   name: 'ElTimePicker',
 

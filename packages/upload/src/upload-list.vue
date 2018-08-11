@@ -63,9 +63,10 @@
 <script>
   import Locale from 'element-ui/src/mixins/locale';
   import ElProgress from 'element-ui/packages/progress';
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
 
   export default {
-    mixins: [Locale],
+    mixins: [PopperOptions, Locale],
 
     data() {
       return {

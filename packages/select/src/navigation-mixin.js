@@ -1,4 +1,6 @@
+import PopperOptions from 'element-ui/src/mixins/popper-options';
 export default {
+  mixins: [PopperOptions],
   data() {
     return {
       hoverOption: -1

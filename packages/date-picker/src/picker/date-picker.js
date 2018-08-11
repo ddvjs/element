@@ -1,6 +1,7 @@
 import Picker from '../picker';
 import DatePanel from '../panel/date';
 import DateRangePanel from '../panel/date-range';
+import PopperOptions from 'element-ui/src/mixins/popper-options';
 
 const getPanel = function(type) {
   if (type === 'daterange' || type === 'datetimerange') {
@@ -10,7 +11,7 @@ const getPanel = function(type) {
 };
 
 export default {
-  mixins: [Picker],
+  mixins: [PopperOptions, Picker],
 
   name: 'ElDatePicker',
 

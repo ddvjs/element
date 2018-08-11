@@ -1,8 +1,10 @@
 <script>
   import TabNav from './tab-nav';
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
 
   export default {
     name: 'ElTabs',
+    mixins: [PopperOptions],
 
     components: {
       TabNav

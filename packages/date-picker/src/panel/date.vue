@@ -169,9 +169,10 @@
   import YearTable from '../basic/year-table';
   import MonthTable from '../basic/month-table';
   import DateTable from '../basic/date-table';
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
 
   export default {
-    mixins: [Locale],
+    mixins: [PopperOptions, Locale],
 
     directives: { Clickoutside },
 

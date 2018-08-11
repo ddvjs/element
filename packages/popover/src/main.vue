@@ -23,6 +23,7 @@
 </template>
 <script>
 import Popper from 'element-ui/src/utils/vue-popper';
+import PopperOptions from 'element-ui/src/mixins/popper-options';
 import { on, off } from 'element-ui/src/utils/dom';
 import { addClass, removeClass } from 'element-ui/src/utils/dom';
 import { generateId } from 'element-ui/src/utils/util';
@@ -30,7 +31,7 @@ import { generateId } from 'element-ui/src/utils/util';
 export default {
   name: 'ElPopover',
 
-  mixins: [Popper],
+  mixins: [PopperOptions, Popper],
 
   props: {
     trigger: {

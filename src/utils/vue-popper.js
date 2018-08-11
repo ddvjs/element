@@ -100,12 +100,6 @@ export const BasePopper = {
     appendToBody: {
       type: Boolean,
       default: true
-    },
-    popperOptions: {
-      type: Object,
-      default() {
-        return {};
-      }
     }
   },
 

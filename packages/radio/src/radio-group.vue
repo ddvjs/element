@@ -9,6 +9,7 @@
 </template>
 <script>
   import Emitter from 'element-ui/src/mixins/emitter';
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
 
   const keyCode = Object.freeze({
     LEFT: 37,
@@ -27,7 +28,7 @@
       }
     },
 
-    mixins: [Emitter],
+    mixins: [PopperOptions, Emitter],
 
     props: {
       value: {},

@@ -36,11 +36,12 @@
   import {t} from 'element-ui/src/locale';
   import emitter from 'element-ui/src/mixins/emitter';
   import { addClass, removeClass } from 'element-ui/src/utils/dom';
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
 
   export default {
     name: 'ElTree',
 
-    mixins: [emitter],
+    mixins: [PopperOptions, emitter],
 
     components: {
       ElTreeNode

@@ -1,9 +1,11 @@
 <script>
 import ajax from './ajax';
 import UploadDragger from './upload-dragger.vue';
+import PopperOptions from 'element-ui/src/mixins/popper-options';
 
 export default {
   inject: ['uploader'],
+  mixins: [PopperOptions],
   components: {
     UploadDragger
   },

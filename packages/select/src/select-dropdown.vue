@@ -8,6 +8,7 @@
 </template>
 
 <script type="text/babel">
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
   import Popper from 'element-ui/src/utils/vue-popper';
 
   export default {
@@ -15,7 +16,7 @@
 
     componentName: 'ElSelectDropdown',
 
-    mixins: [Popper],
+    mixins: [PopperOptions, Popper],
 
     props: {
       placement: {

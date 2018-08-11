@@ -71,13 +71,14 @@
   import ElCheckbox from 'element-ui/packages/checkbox';
   import emitter from 'element-ui/src/mixins/emitter';
   import { getNodeKey } from './model/util';
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
 
   export default {
     name: 'ElTreeNode',
 
     componentName: 'ElTreeNode',
 
-    mixins: [emitter],
+    mixins: [PopperOptions, emitter],
 
     props: {
       node: {

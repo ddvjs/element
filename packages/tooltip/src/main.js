@@ -1,4 +1,5 @@
 import Popper from 'element-ui/src/utils/vue-popper';
+import PopperOptions from 'element-ui/src/mixins/popper-options';
 import debounce from 'throttle-debounce/debounce';
 import { addClass, removeClass, on, off } from 'element-ui/src/utils/dom';
 import { getFirstComponentChild } from 'element-ui/src/utils/vdom';
@@ -8,7 +9,7 @@ import Vue from 'vue';
 export default {
   name: 'ElTooltip',
 
-  mixins: [Popper],
+  mixins: [PopperOptions, Popper],
 
   props: {
     openDelay: {

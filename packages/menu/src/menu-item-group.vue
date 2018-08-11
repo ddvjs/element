@@ -10,8 +10,10 @@
   </li>
 </template>
 <script>
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
   export default {
     name: 'ElMenuItemGroup',
+    mixins: [PopperOptions],
 
     componentName: 'ElMenuItemGroup',
 

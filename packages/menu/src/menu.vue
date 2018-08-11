@@ -3,6 +3,7 @@
   import Migrating from 'element-ui/src/mixins/migrating';
   import Menubar from 'element-ui/src/utils/menu/aria-menubar';
   import { addClass, removeClass, hasClass } from 'element-ui/src/utils/dom';
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
 
   export default {
     name: 'ElMenu',
@@ -36,7 +37,7 @@
 
     componentName: 'ElMenu',
 
-    mixins: [emitter, Migrating],
+    mixins: [PopperOptions, emitter, Migrating],
 
     provide() {
       return {

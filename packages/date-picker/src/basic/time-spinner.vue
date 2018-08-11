@@ -98,8 +98,10 @@
   import { getRangeHours, modifyTime } from '../util';
   import ElScrollbar from 'element-ui/packages/scrollbar';
   import RepeatClick from 'element-ui/src/directives/repeat-click';
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
 
   export default {
+    mixins: [PopperOptions],
     components: { ElScrollbar },
 
     directives: {

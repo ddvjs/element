@@ -49,11 +49,12 @@
   import Dropdown from './dropdown';
   import ElCheckbox from 'element-ui/packages/checkbox';
   import ElCheckboxGroup from 'element-ui/packages/checkbox-group';
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
 
   export default {
     name: 'ElTableFilterPanel',
 
-    mixins: [Popper, Locale],
+    mixins: [PopperOptions, Popper, Locale],
 
     directives: {
       Clickoutside

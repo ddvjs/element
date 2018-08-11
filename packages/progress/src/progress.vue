@@ -38,8 +38,10 @@
   </div>
 </template>
 <script>
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
   export default {
     name: 'ElProgress',
+    mixins: [PopperOptions],
     props: {
       type: {
         type: String,

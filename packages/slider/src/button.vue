@@ -29,9 +29,11 @@
 
 <script>
   import ElTooltip from 'element-ui/packages/tooltip';
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
 
   export default {
     name: 'ElSliderButton',
+    mixins: [PopperOptions],
 
     components: {
       ElTooltip

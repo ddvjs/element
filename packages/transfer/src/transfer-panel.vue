@@ -52,13 +52,14 @@
 </template>
 
 <script>
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
   import ElCheckboxGroup from 'element-ui/packages/checkbox-group';
   import ElCheckbox from 'element-ui/packages/checkbox';
   import ElInput from 'element-ui/packages/input';
   import Locale from 'element-ui/src/mixins/locale';
 
   export default {
-    mixins: [Locale],
+    mixins: [PopperOptions, Locale],
 
     name: 'ElTransferPanel',
 

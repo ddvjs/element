@@ -57,11 +57,12 @@
   import ElInputNumber from 'element-ui/packages/input-number';
   import SliderButton from './button.vue';
   import Emitter from 'element-ui/src/mixins/emitter';
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
 
   export default {
     name: 'ElSlider',
 
-    mixins: [Emitter],
+    mixins: [PopperOptions, Emitter],
 
     inject: {
       elForm: {

@@ -20,11 +20,12 @@
 <script>
   import Popper from 'element-ui/src/utils/vue-popper';
   import Emitter from 'element-ui/src/mixins/emitter';
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
   import ElScrollbar from 'element-ui/packages/scrollbar';
 
   export default {
     components: { ElScrollbar },
-    mixins: [Popper, Emitter],
+    mixins: [PopperOptions, Popper, Emitter],
 
     componentName: 'ElAutocompleteSuggestions',
 

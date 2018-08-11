@@ -5,13 +5,14 @@
   import ElButton from 'element-ui/packages/button';
   import ElButtonGroup from 'element-ui/packages/button-group';
   import { generateId } from 'element-ui/src/utils/util';
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
 
   export default {
     name: 'ElDropdown',
 
     componentName: 'ElDropdown',
 
-    mixins: [Emitter, Migrating],
+    mixins: [PopperOptions, Emitter, Migrating],
 
     directives: { Clickoutside },
 

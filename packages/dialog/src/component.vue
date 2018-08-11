@@ -34,11 +34,12 @@
   import Popup from 'element-ui/src/utils/popup';
   import Migrating from 'element-ui/src/mixins/migrating';
   import emitter from 'element-ui/src/mixins/emitter';
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
 
   export default {
     name: 'ElDialog',
 
-    mixins: [Popup, emitter, Migrating],
+    mixins: [PopperOptions, Popup, emitter, Migrating],
 
     props: {
       title: {

@@ -31,8 +31,10 @@
 </template>
 
 <script type="text/babel">
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
   export default {
     name: 'ElPager',
+    mixins: [PopperOptions],
 
     props: {
       currentPage: Number,

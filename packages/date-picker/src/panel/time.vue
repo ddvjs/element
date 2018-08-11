@@ -34,9 +34,10 @@
   import { limitTimeRange, isDate, clearMilliseconds, timeWithinRange } from '../util';
   import Locale from 'element-ui/src/mixins/locale';
   import TimeSpinner from '../basic/time-spinner';
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
 
   export default {
-    mixins: [Locale],
+    mixins: [PopperOptions, Locale],
 
     components: {
       TimeSpinner

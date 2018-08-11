@@ -34,9 +34,11 @@
   import Color from './color';
   import PickerDropdown from './components/picker-dropdown.vue';
   import Clickoutside from 'element-ui/src/utils/clickoutside';
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
 
   export default {
     name: 'ElColorPicker',
+    mixins: [PopperOptions],
 
     props: {
       value: String,

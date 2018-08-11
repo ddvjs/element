@@ -46,6 +46,7 @@
 <script type="text/babel">
   import { hasClass } from 'element-ui/src/utils/dom';
   import { isDate, range, nextDate, getDayCountOfYear } from '../util';
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
 
   const datesInYear = year => {
     const numOfDays = getDayCountOfYear(year);
@@ -54,6 +55,7 @@
   };
 
   export default {
+    mixins: [PopperOptions],
     props: {
       disabledDate: {},
       value: {},

@@ -66,6 +66,7 @@ import Popper from 'element-ui/src/utils/vue-popper';
 import Clickoutside from 'element-ui/src/utils/clickoutside';
 import emitter from 'element-ui/src/mixins/emitter';
 import Locale from 'element-ui/src/mixins/locale';
+import PopperOptions from 'element-ui/src/mixins/popper-options';
 import { t } from 'element-ui/src/locale';
 import debounce from 'throttle-debounce/debounce';
 import { generateId } from 'element-ui/src/utils/util';
@@ -75,7 +76,7 @@ export default {
 
   directives: { Clickoutside },
 
-  mixins: [Popper, emitter, Locale],
+  mixins: [PopperOptions, Popper, emitter, Locale],
 
   inject: {
     elForm: {

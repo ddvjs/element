@@ -4,9 +4,11 @@ import ElOption from 'element-ui/packages/option';
 import ElInput from 'element-ui/packages/input';
 import Locale from 'element-ui/src/mixins/locale';
 import { valueEquals } from 'element-ui/src/utils/util';
+import PopperOptions from 'element-ui/src/mixins/popper-options';
 
 export default {
   name: 'ElPagination',
+  mixins: [PopperOptions],
 
   props: {
     pageSize: {

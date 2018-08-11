@@ -46,11 +46,12 @@
   import Locale from 'element-ui/src/mixins/locale';
   import ElInput from 'element-ui/packages/input';
   import ElButton from 'element-ui/packages/button';
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
 
   export default {
     name: 'el-color-picker-dropdown',
 
-    mixins: [Popper, Locale],
+    mixins: [PopperOptions, Popper, Locale],
 
     components: {
       SvPanel,

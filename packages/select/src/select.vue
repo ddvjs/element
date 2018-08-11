@@ -134,6 +134,7 @@
 </template>
 
 <script type="text/babel">
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
   import Emitter from 'element-ui/src/mixins/emitter';
   import Focus from 'element-ui/src/mixins/focus';
   import Locale from 'element-ui/src/mixins/locale';
@@ -160,7 +161,7 @@
   };
 
   export default {
-    mixins: [Emitter, Locale, Focus('reference'), NavigationMixin],
+    mixins: [PopperOptions, Emitter, Locale, Focus('reference'), NavigationMixin],
 
     name: 'ElSelect',
 

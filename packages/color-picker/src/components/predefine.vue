@@ -15,8 +15,10 @@
 
 <script>
   import Color from '../color';
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
 
   export default {
+    mixins: [PopperOptions],
     props: {
       colors: { type: Array, required: true },
       color: { required: true }

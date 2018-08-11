@@ -19,9 +19,11 @@
 
 <script>
   import draggable from '../draggable';
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
 
   export default {
     name: 'el-color-alpha-slider',
+    mixins: [PopperOptions],
 
     props: {
       color: {

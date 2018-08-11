@@ -4,10 +4,12 @@ import { addResizeListener, removeResizeListener } from 'element-ui/src/utils/re
 import scrollbarWidth from 'element-ui/src/utils/scrollbar-width';
 import { toObject } from 'element-ui/src/utils/util';
 import Bar from './bar';
+import PopperOptions from 'element-ui/src/mixins/popper-options';
 
 /* istanbul ignore next */
 export default {
   name: 'ElScrollbar',
+  mixins: [PopperOptions],
 
   components: { Bar },
 

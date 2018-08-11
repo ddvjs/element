@@ -13,9 +13,11 @@
 
 <script>
   import draggable from '../draggable';
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
 
   export default {
     name: 'el-color-hue-slider',
+    mixins: [PopperOptions],
 
     props: {
       color: {

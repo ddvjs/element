@@ -4,11 +4,12 @@ import ElCheckbox from 'element-ui/packages/checkbox';
 import ElTooltip from 'element-ui/packages/tooltip';
 import debounce from 'throttle-debounce/debounce';
 import LayoutObserver from './layout-observer';
+import PopperOptions from 'element-ui/src/mixins/popper-options';
 
 export default {
   name: 'ElTableBody',
 
-  mixins: [LayoutObserver],
+  mixins: [PopperOptions, LayoutObserver],
 
   components: {
     ElCheckbox,

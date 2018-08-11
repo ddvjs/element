@@ -101,13 +101,14 @@
   import calcTextareaHeight from './calcTextareaHeight';
   import merge from 'element-ui/src/utils/merge';
   import { isKorean } from 'element-ui/src/utils/shared';
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
 
   export default {
     name: 'ElInput',
 
     componentName: 'ElInput',
 
-    mixins: [emitter, Migrating],
+    mixins: [PopperOptions, emitter, Migrating],
 
     inheritAttrs: false,
 

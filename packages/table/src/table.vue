@@ -224,13 +224,14 @@
   import TableBody from './table-body';
   import TableHeader from './table-header';
   import TableFooter from './table-footer';
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
 
   let tableIdSeed = 1;
 
   export default {
     name: 'ElTable',
 
-    mixins: [Locale, Migrating],
+    mixins: [PopperOptions, Locale, Migrating],
 
     directives: {
       Mousewheel

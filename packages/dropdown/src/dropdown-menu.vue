@@ -7,13 +7,14 @@
 </template>
 <script>
   import Popper from 'element-ui/src/utils/vue-popper';
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
 
   export default {
     name: 'ElDropdownMenu',
 
     componentName: 'ElDropdownMenu',
 
-    mixins: [Popper],
+    mixins: [PopperOptions, Popper],
 
     props: {
       arrowOffset: {

@@ -17,9 +17,11 @@
 
 <script>
   import draggable from '../draggable';
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
 
   export default {
     name: 'el-sl-panel',
+    mixins: [PopperOptions],
 
     props: {
       color: {

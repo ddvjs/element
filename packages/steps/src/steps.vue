@@ -10,12 +10,13 @@
 </template>
 
 <script>
+import PopperOptions from 'element-ui/src/mixins/popper-options';
 import Migrating from 'element-ui/src/mixins/migrating';
 
 export default {
   name: 'ElSteps',
 
-  mixins: [Migrating],
+  mixins: [PopperOptions, Migrating],
 
   props: {
     space: [Number, String],

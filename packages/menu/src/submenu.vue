@@ -3,6 +3,7 @@
   import menuMixin from './menu-mixin';
   import Emitter from 'element-ui/src/mixins/emitter';
   import { customerPopper } from 'element-ui/src/utils/vue-popper';
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
 
   const poperMixins = customerPopper('appendToBody');
 
@@ -11,7 +12,7 @@
 
     componentName: 'ElSubmenu',
 
-    mixins: [menuMixin, Emitter, poperMixins],
+    mixins: [PopperOptions, menuMixin, Emitter, poperMixins],
 
     components: { ElCollapseTransition },
 

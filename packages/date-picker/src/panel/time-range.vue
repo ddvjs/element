@@ -65,6 +65,7 @@
   } from '../util';
   import Locale from 'element-ui/src/mixins/locale';
   import TimeSpinner from '../basic/time-spinner';
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
 
   const MIN_TIME = parseDate('00:00:00', 'HH:mm:ss');
   const MAX_TIME = parseDate('23:59:59', 'HH:mm:ss');
@@ -83,7 +84,7 @@
   };
 
   export default {
-    mixins: [Locale],
+    mixins: [PopperOptions, Locale],
 
     components: { TimeSpinner },
 

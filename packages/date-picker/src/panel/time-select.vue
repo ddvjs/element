@@ -20,6 +20,7 @@
 <script type="text/babel">
   import ElScrollbar from 'element-ui/packages/scrollbar';
   import scrollIntoView from 'element-ui/src/utils/scroll-into-view';
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
 
   const parseTime = function(time) {
     const values = (time || '').split(':');
@@ -73,6 +74,7 @@
   };
 
   export default {
+    mixins: [PopperOptions],
     components: { ElScrollbar },
 
     watch: {

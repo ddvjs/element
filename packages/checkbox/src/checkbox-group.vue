@@ -1,12 +1,13 @@
 <script>
   import Emitter from 'element-ui/src/mixins/emitter';
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
 
   export default {
     name: 'ElCheckboxGroup',
 
     componentName: 'ElCheckboxGroup',
 
-    mixins: [Emitter],
+    mixins: [PopperOptions, Emitter],
 
     inject: {
       elFormItem: {

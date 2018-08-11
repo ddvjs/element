@@ -2,6 +2,7 @@
   import { isDef } from 'element-ui/src/utils/shared';
   import scrollIntoView from 'element-ui/src/utils/scroll-into-view';
   import { generateId } from 'element-ui/src/utils/util';
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
 
   const copyArray = (arr, props) => {
     if (!arr || !Array.isArray(arr) || !props) return arr;
@@ -29,6 +30,7 @@
 
   export default {
     name: 'ElCascaderMenu',
+    mixins: [PopperOptions],
 
     data() {
       return {

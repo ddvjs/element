@@ -4,9 +4,11 @@
   </div>
 </template>
 <script>
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
   export default {
     name: 'ElCollapse',
 
+    mixins: [PopperOptions],
     componentName: 'ElCollapse',
 
     props: {

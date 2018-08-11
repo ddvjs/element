@@ -32,6 +32,7 @@
 </template>
 
 <script type="text/babel">
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
   let typeMap = {
     success: 'success',
     info: 'info',
@@ -40,6 +41,7 @@
   };
 
   export default {
+    mixins: [PopperOptions],
     data() {
       return {
         visible: false,

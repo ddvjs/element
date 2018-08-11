@@ -32,13 +32,14 @@
   import Menu from './menu-mixin';
   import ElTooltip from 'element-ui/packages/tooltip';
   import Emitter from 'element-ui/src/mixins/emitter';
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
 
   export default {
     name: 'ElMenuItem',
 
     componentName: 'ElMenuItem',
 
-    mixins: [Menu, Emitter],
+    mixins: [PopperOptions, Menu, Emitter],
 
     components: { ElTooltip },
 

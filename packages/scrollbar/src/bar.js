@@ -1,9 +1,11 @@
 import { on, off } from 'element-ui/src/utils/dom';
 import { renderThumbStyle, BAR_MAP } from './util';
+import PopperOptions from 'element-ui/src/mixins/popper-options';
 
 /* istanbul ignore next */
 export default {
   name: 'Bar',
+  mixins: [PopperOptions],
 
   props: {
     vertical: Boolean,

@@ -19,6 +19,7 @@
 </template>
 
 <script type="text/babel">
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
   const TYPE_CLASSES_MAP = {
     'success': 'el-icon-success',
     'warning': 'el-icon-warning',
@@ -27,6 +28,7 @@
   export default {
     name: 'ElAlert',
 
+    mixins: [PopperOptions],
     props: {
       title: {
         type: String,

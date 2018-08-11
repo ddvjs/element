@@ -84,6 +84,7 @@
   import { addClass, removeClass } from 'element-ui/src/utils/dom';
   import { t } from 'element-ui/src/locale';
   import Dialog from 'element-ui/src/utils/aria-dialog';
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
 
   let messageBox;
   let typeMap = {
@@ -94,7 +95,7 @@
   };
 
   export default {
-    mixins: [Popup, Locale],
+    mixins: [PopperOptions, Popup, Locale],
 
     props: {
       modal: {

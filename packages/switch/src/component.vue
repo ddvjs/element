@@ -36,12 +36,13 @@
   </div>
 </template>
 <script>
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
   import Focus from 'element-ui/src/mixins/focus';
   import Migrating from 'element-ui/src/mixins/migrating';
 
   export default {
     name: 'ElSwitch',
-    mixins: [Focus('input'), Migrating],
+    mixins: [PopperOptions, Focus('input'), Migrating],
     inject: {
       elForm: {
         default: ''

@@ -2,8 +2,10 @@
   <div class="el-tabs__active-bar" :class="`is-${ rootTabs.tabPosition }`" :style="barStyle"></div>
 </template>
 <script>
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
   export default {
     name: 'TabBar',
+    mixins: [PopperOptions],
 
     props: {
       tabs: Array

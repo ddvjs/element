@@ -4,6 +4,7 @@ import ElTag from 'element-ui/packages/tag';
 import Vue from 'vue';
 import FilterPanel from './filter-panel.vue';
 import LayoutObserver from './layout-observer';
+import PopperOptions from 'element-ui/src/mixins/popper-options';
 
 const getAllColumns = (columns) => {
   const result = [];
@@ -66,7 +67,7 @@ const convertToRows = (originColumns) => {
 export default {
   name: 'ElTableHeader',
 
-  mixins: [LayoutObserver],
+  mixins: [PopperOptions, LayoutObserver],
 
   render(h) {
     const originColumns = this.store.states.originColumns;

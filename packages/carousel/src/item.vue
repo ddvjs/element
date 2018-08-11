@@ -25,9 +25,11 @@
 </template>
 
 <script>
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
   const CARD_SCALE = 0.83;
   export default {
     name: 'ElCarouselItem',
+    mixins: [PopperOptions],
 
     props: {
       name: String,

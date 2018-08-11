@@ -8,11 +8,14 @@
 </template>
 <script>
   import objectAssign from 'element-ui/src/utils/merge';
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
 
   export default {
     name: 'ElForm',
 
     componentName: 'ElForm',
+
+    mixins: [PopperOptions],
 
     provide() {
       return {

@@ -51,10 +51,12 @@
 
 <script>
 import throttle from 'throttle-debounce/throttle';
+import PopperOptions from 'element-ui/src/mixins/popper-options';
 import { addResizeListener, removeResizeListener } from 'element-ui/src/utils/resize-event';
 
 export default {
   name: 'ElCarousel',
+  mixins: [PopperOptions],
 
   props: {
     initialIndex: {

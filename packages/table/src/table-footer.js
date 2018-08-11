@@ -1,9 +1,10 @@
 import LayoutObserver from './layout-observer';
+import PopperOptions from 'element-ui/src/mixins/popper-options';
 
 export default {
   name: 'ElTableFooter',
 
-  mixins: [LayoutObserver],
+  mixins: [PopperOptions, LayoutObserver],
 
   render(h) {
     let sums = [];

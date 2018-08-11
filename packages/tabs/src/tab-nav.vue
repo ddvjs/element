@@ -1,6 +1,7 @@
 <script>
   import TabBar from './tab-bar';
   import { addResizeListener, removeResizeListener } from 'element-ui/src/utils/resize-event';
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
 
   function noop() {}
   const firstUpperCase = str => {
@@ -9,6 +10,7 @@
 
   export default {
     name: 'TabNav',
+    mixins: [PopperOptions],
 
     components: {
       TabBar

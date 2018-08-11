@@ -1,5 +1,7 @@
+import PopperOptions from 'element-ui/src/mixins/popper-options';
 export default {
   name: 'ElCol',
+  mixins: [PopperOptions],
 
   props: {
     span: {

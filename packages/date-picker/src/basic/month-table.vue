@@ -51,6 +51,7 @@
   import Locale from 'element-ui/src/mixins/locale';
   import { isDate, range, getDayCountOfMonth, nextDate } from '../util';
   import { hasClass } from 'element-ui/src/utils/dom';
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
 
   const datesInMonth = (year, month) => {
     const numOfDays = getDayCountOfMonth(year, month);
@@ -59,6 +60,7 @@
   };
 
   export default {
+    mixins: [PopperOptions],
     props: {
       disabledDate: {},
       value: {},

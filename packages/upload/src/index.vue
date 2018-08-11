@@ -3,13 +3,14 @@ import UploadList from './upload-list';
 import Upload from './upload';
 import ElProgress from 'element-ui/packages/progress';
 import Migrating from 'element-ui/src/mixins/migrating';
+import PopperOptions from 'element-ui/src/mixins/popper-options';
 
 function noop() {}
 
 export default {
   name: 'ElUpload',
 
-  mixins: [Migrating],
+  mixins: [PopperOptions, Migrating],
 
   components: {
     ElProgress,

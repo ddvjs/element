@@ -17,7 +17,9 @@
 </template>
 
 <script>
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
   export default {
+    mixins: [PopperOptions],
     data() {
       return {
         text: null,

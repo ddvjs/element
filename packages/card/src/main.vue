@@ -10,8 +10,10 @@
 </template>
 
 <script>
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
   export default {
     name: 'ElCard',
+    mixins: [PopperOptions],
     props: {
       header: {},
       bodyStyle: {},

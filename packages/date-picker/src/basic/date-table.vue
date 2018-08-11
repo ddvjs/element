@@ -33,6 +33,7 @@
   import { getFirstDayOfMonth, getDayCountOfMonth, getWeekNumber, getStartDateOfMonth, nextDate, isDate } from '../util';
   import { hasClass } from 'element-ui/src/utils/dom';
   import Locale from 'element-ui/src/mixins/locale';
+  import PopperOptions from 'element-ui/src/mixins/popper-options';
 
   const WEEKS = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
   const clearHours = function(time) {
@@ -42,7 +43,7 @@
   };
 
   export default {
-    mixins: [Locale],
+    mixins: [PopperOptions, Locale],
 
     props: {
       firstDayOfWeek: {
