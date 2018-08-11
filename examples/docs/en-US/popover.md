@@ -1,21 +1,8 @@
-<style>
-  .demo-box.demo-popover {
-    .el-popover + .el-popover {
-      margin-left: 10px;
-    }
-    .el-input {
-      width: 360px;
-    }
-    .el-button {
-      margin-left: 10px;
-    }
-  }
-</style>
-
 <script>
   export default {
     data() {
       return {
+        visible: false,
         visible2: false,
         gridData: [{
           date: '2016-05-02',
@@ -94,6 +81,20 @@
   };
 </script>
 
+<style>
+  .demo-box.demo-popover {
+    .el-popover + .el-popover {
+      margin-left: 10px;
+    }
+    .el-input {
+      width: 360px;
+    }
+    .el-button {
+      margin-left: 10px;
+    }
+  }
+</style>
+
 ## Popover
 
 ### Basic usage
@@ -103,34 +104,55 @@ Similar to Tooltip, Popover is also built with `Vue-popper`. So for some duplica
 :::demo The `trigger` attribute is used to define how popover is triggered: `hover`, `click`, `focus` or `manual`. As for the triggering element, you can write it in two different ways: use the `slot="reference"` named slot, or use the `v-popover` directive and set it to Popover's `ref`.
 
 ```html
-<el-popover
-  placement="top-start"
-  title="Title"
-  width="200"
-  trigger="hover"
-  content="this is content, this is content, this is content">
-  <el-button slot="reference">Hover to activate</el-button>
-</el-popover>
+<template>
+  <el-popover
+    placement="top-start"
+    title="Title"
+    width="200"
+    trigger="hover"
+    content="this is content, this is content, this is content">
+    <el-button slot="reference">Hover to activate</el-button>
+  </el-popover>
 
-<el-popover
-  placement="bottom"
-  title="Title"
-  width="200"
-  trigger="click"
-  content="this is content, this is content, this is content">
-  <el-button slot="reference">Click to activate</el-button>
-</el-popover>
+  <el-popover
+    placement="bottom"
+    title="Title"
+    width="200"
+    trigger="click"
+    content="this is content, this is content, this is content">
+    <el-button slot="reference">Click to activate</el-button>
+  </el-popover>
 
-<el-popover
-  ref="popover"
-  placement="right"
-  title="Title"
-  width="200"
-  trigger="focus"
-  content="this is content, this is content, this is content">
-</el-popover>
-<el-button v-popover:popover>Focus to activate</el-button>
+  <el-popover
+    ref="popover"
+    placement="right"
+    title="Title"
+    width="200"
+    trigger="focus"
+    content="this is content, this is content, this is content">
+  </el-popover>
+  <el-button v-popover:popover>Focus to activate</el-button>
 
+  <el-popover
+    placement="bottom"
+    title="Title"
+    width="200"
+    trigger="manual"
+    content="this is content, this is content, this is content"
+    v-model="visible">
+    <el-button slot="reference" @click="visible = !visible">Manual to activate</el-button>
+  </el-popover>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        visible: false
+      };
+    }
+  };
+</script>
 ```
 :::
 
@@ -220,7 +242,7 @@ Of course, you can nest other operations. It's more light-weight than using a di
 |  width        |  popover width  | string, number            | — | Min width 150px |
 |  placement        |  popover placement  | string | top/top-start/top-end/bottom/bottom-start/bottom-end/left/left-start/left-end/right/right-start/right-end |  bottom |
 |  disabled       |  whether Popover is disabled  | boolean    | — |  false |
-|  value(v-model)        |  whether popover is visible  | Boolean           | — |  false |
+|  value / v-model        |  whether popover is visible  | Boolean           | — |  false |
 |  offset        |  popover offset  | number           | — |  0 |
 |  transition     |  popover transition animation      | string             | — | el-fade-in-linear |
 |  visible-arrow   |  whether a tooltip arrow is displayed or not. For more info, please refer to [Vue-popper](https://github.com/element-component/vue-popper) | boolean | — | true |

@@ -1,21 +1,8 @@
-<style>
-  .demo-box.demo-popover {
-    .el-popover + .el-popover {
-      margin-left: 10px;
-    }
-    .el-input {
-      width: 360px;
-    }
-    .el-button {
-      margin-left: 10px;
-    }
-  }
-</style>
-
 <script>
   export default {
     data() {
       return {
+        visible: false,
         visible2: false,
         gridData: [{
           date: '2016-05-02',
@@ -94,6 +81,20 @@
   };
 </script>
 
+<style>
+  .demo-box.demo-popover {
+    .el-popover + .el-popover {
+      margin-left: 10px;
+    }
+    .el-input {
+      width: 360px;
+    }
+    .el-button {
+      margin-left: 10px;
+    }
+  }
+</style>
+
 ## Popover
 
 ### Uso básico
@@ -103,33 +104,55 @@ Similar a un Tooltip, Popover está construido con `Vue-popper`. Así que para a
 :::demo El atributo `trigger` es usado para definir como el popover se dispara: `hover`, `click`, `focus` o `manual`. As for the triggering element, you can write it in two different ways: use the `slot="reference"` [named slot](https://vuejs.org/v2/guide/components.html#Named-Slots), or use the `v-popover` directive and set it to Popover's `ref`.
 
 ```html
-<el-popover
-  placement="top-start"
-  title="Title"
-  width="200"
-  trigger="hover"
-  content="this is content, this is content, this is content">
-  <el-button slot="reference">Hover to activate</el-button>
-</el-popover>
+<template>
+  <el-popover
+    placement="top-start"
+    title="Title"
+    width="200"
+    trigger="hover"
+    content="this is content, this is content, this is content">
+    <el-button slot="reference">Hover to activate</el-button>
+  </el-popover>
 
-<el-popover
-  placement="bottom"
-  title="Title"
-  width="200"
-  trigger="click"
-  content="this is content, this is content, this is content">
-  <el-button slot="reference">Click to activate</el-button>
-</el-popover>
+  <el-popover
+    placement="bottom"
+    title="Title"
+    width="200"
+    trigger="click"
+    content="this is content, this is content, this is content">
+    <el-button slot="reference">Click to activate</el-button>
+  </el-popover>
 
-<el-popover
-  ref="popover"
-  placement="right"
-  title="Title"
-  width="200"
-  trigger="focus"
-  content="this is content, this is content, this is content">
-</el-popover>
-<el-button v-popover:popover>Focus to activate</el-button>
+  <el-popover
+    ref="popover"
+    placement="right"
+    title="Title"
+    width="200"
+    trigger="focus"
+    content="this is content, this is content, this is content">
+  </el-popover>
+  <el-button v-popover:popover>Focus to activate</el-button>
+
+  <el-popover
+    placement="bottom"
+    title="Title"
+    width="200"
+    trigger="manual"
+    content="this is content, this is content, this is content"
+    v-model="visible">
+    <el-button slot="reference" @click="visible = !visible">Manual to activate</el-button>
+  </el-popover>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        visible: false
+      };
+    }
+  };
+</script>
 ```
 :::
 
@@ -218,7 +241,7 @@ Por supuesto, puedes anidar otras operaciones. Es más ligero que utilizar un `d
 | width          | ancho del popover                        | string, number | —                                        | Min width 150px                          |
 | placement      | posición del popover en la pantalla      | string         | top/top-start/top-end/bottom/bottom-start/bottom-end/left/left-start/left-end/right/right-start/right-end | bottom                                   |
 | disabled       | si el popover está deshabilitado         | boolean        | —                                        | false                                    |
-| value(v-model) | si el popover está visible               | Boolean        | —                                        | false                                    |
+| value / v-model | si el popover está visible               | Boolean        | —                                        | false                                    |
 | offset         | popover offset                           | number         | —                                        | 0                                        |
 | transition     | popover transition animation             | string         | —                                        | el-fade-in-linear                        |
 | visible-arrow  | si una flecha del tooltip es mostrada o no. Para más información, por favor refiérase a [Vue-popper](https://github.com/element-component/vue-popper) | boolean        | —                                        | true                                     |

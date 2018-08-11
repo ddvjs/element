@@ -2047,9 +2047,9 @@
 | cell-mouse-leave | 当单元格 hover 退出时会触发该事件 | row, column, cell, event |
 | cell-click | 当某个单元格被点击时会触发该事件 | row, column, cell, event |
 | cell-dblclick | 当某个单元格被双击击时会触发该事件 | row, column, cell, event |
-| row-click | 当某一行被点击时会触发该事件 | row, event, column |
-| row-contextmenu | 当某一行被鼠标右键点击时会触发该事件 | row, event |
-| row-dblclick | 当某一行被双击时会触发该事件 | row, event |
+| row-click | 当某一行被点击时会触发该事件 | row, column, event |
+| row-contextmenu | 当某一行被鼠标右键点击时会触发该事件 | row, column, event |
+| row-dblclick | 当某一行被双击时会触发该事件 | row, column, event |
 | header-click | 当某一列的表头被点击时会触发该事件 | column, event |
 | header-contextmenu | 当某一列的表头被鼠标右键点击时触发该事件 | column, event |
 | sort-change | 当表格的排序条件发生变化的时候会触发该事件 | { column, prop, order } |
@@ -2063,6 +2063,7 @@
 | ---- | ---- | ---- |
 | clearSelection | 用于多选表格，清空用户的选择 | — |
 | toggleRowSelection | 用于多选表格，切换某一行的选中状态，如果使用了第二个参数，则是设置这一行选中与否（selected 为 true 则选中） | row, selected |
+| toggleAllSelection | 用于多选表格，切换所有行的选中状态 | - |
 | toggleRowExpansion | 用于可展开表格，切换某一行的展开状态，如果使用了第二个参数，则是设置这一行展开与否（expanded 为 true 则展开） | row, expanded |
 | setCurrentRow | 用于单选表格，设定某一行为选中行，如果调用时不加参数，则会取消目前高亮行的选中状态。 | row |
 | clearSort | 用于清空排序条件，数据会恢复成未排序的状态 | — |

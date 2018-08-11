@@ -197,8 +197,8 @@
         return path.reverse();
       },
 
-      getCheckedNodes(leafOnly) {
-        return this.store.getCheckedNodes(leafOnly);
+      getCheckedNodes(leafOnly, includeHalfChecked) {
+        return this.store.getCheckedNodes(leafOnly, includeHalfChecked);
       },
 
       getCheckedKeys(leafOnly) {
@@ -447,17 +447,21 @@
         event.dataTransfer.dropEffect = 'move';
 
         if (draggingNode && dropNode) {
-          const data = draggingNode.node.data;
-          if (dropType === 'before') {
-            draggingNode.node.remove();
-            dropNode.node.parent.insertBefore({ data }, dropNode.node);
-          } else if (dropType === 'after') {
-            draggingNode.node.remove();
-            dropNode.node.parent.insertAfter({ data }, dropNode.node);
-          } else if (dropType === 'inner') {
-            dropNode.node.insertChild({ data });
+          const draggingNodeCopy = { data: draggingNode.node.data };
+          if (dropType !== 'none') {
             draggingNode.node.remove();
           }
+          if (dropType === 'before') {
+            dropNode.node.parent.insertBefore(draggingNodeCopy, dropNode.node);
+          } else if (dropType === 'after') {
+            dropNode.node.parent.insertAfter(draggingNodeCopy, dropNode.node);
+          } else if (dropType === 'inner') {
+            dropNode.node.insertChild(draggingNodeCopy);
+          }
+          if (dropType !== 'none') {
+            this.store.registerNode(draggingNodeCopy);
+          }
+
           removeClass(dropNode.$el, 'is-drop-inner');
 
           this.$emit('node-drag-end', draggingNode.node, dropNode.node, dropType, event);
