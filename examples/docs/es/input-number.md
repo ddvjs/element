@@ -121,7 +121,7 @@ Le permite definir el nivel de incremento de los saltos.
 :::
 
 :::tip
-The value of `precision` must be a positive integer and should not be less than the decimal places of `step`.
+The value of `precision` must be a non negative integer and should not be less than the decimal places of `step`.
 :::
 
 ### Tamaño
@@ -181,7 +181,7 @@ Utilice el atributo `size` para establecer tamaños adicionales con `medium`, `s
 
 | Atributo          | Descripción                              | Tipo    | Valores aceptados | Por defecto |
 | ----------------- | ---------------------------------------- | ------- | ----------------- | ----------- |
-| value             | valor vinculado                          | number  | —                 | —           |
+| value / v-model    | valor vinculado                          | number  | —                 | 0           |
 | min               | el valor mínimo permitido                | number  | —                 | `-Infinity`  |
 | max               | el valor maximo permitido                | number  | —                 | `Infinity`  |
 | step              | incremento (salto)                       | number  | —                 | 1           |

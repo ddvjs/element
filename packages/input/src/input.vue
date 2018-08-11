@@ -203,7 +203,7 @@
     },
 
     watch: {
-      'value'(val, oldValue) {
+      value(val, oldValue) {
         this.setCurrentValue(val);
       }
     },
@@ -283,16 +283,22 @@
         if (this.isOnComposition && value === this.valueBeforeComposition) return;
         this.currentValue = value;
         if (this.isOnComposition) return;
-        this.$nextTick(_ => {
-          this.resizeTextarea();
-        });
-        if (this.validateEvent) {
+        this.$nextTick(this.resizeTextarea);
+        if (this.validateEvent && this.currentValue === this.value) {
           this.dispatch('ElFormItem', 'el.form.change', [value]);
         }
       },
       calcIconOffset(place) {
-        const el = this.$el.querySelector(`.el-input__${place}`);
-        if (!el || el.parentNode !== this.$el) return;
+        let elList = [].slice.call(this.$el.querySelectorAll(`.el-input__${place}`) || []);
+        if (!elList.length) return;
+        let el = null;
+        for (let i = 0; i < elList.length; i++) {
+          if (elList[i].parentNode === this.$el) {
+            el = elList[i];
+            break;
+          }
+        }
+        if (!el) return;
         const pendantMap = {
           suffix: 'append',
           prefix: 'prepend'

@@ -623,7 +623,7 @@ Búsqueda de datos desde el servidor.
 | Atributo      | Descripción                              | Tipo             | Valores aceptados                | Por defecto |
 | ------------- | ---------------------------------------- | ---------------- | -------------------------------- | ----------- |
 | type          | tipo de input                            | string           | text, textarea y otros [tipos de entrada nativos](https://developer.mozilla.org/es/docs/Web/HTML/Elemento/input#Form_%3Cinput%3E_types)  | text        |
-| value         | valor enlazado                           | string / number  | —                                | —           |
+| value / v-model | valor enlazado                          | boolean / string / number | —                       | —           |
 | maxlength     | igual que `maxlength` en el input nativo | number           | —                                | —           |
 | minlength     | igual que `minlength` en el input nativo | number           | —                                | —           |
 | placeholder   | placeholder del Input                    | string           | —                                | —           |
@@ -691,6 +691,7 @@ Atributo | Descripción | Tipo | Opciones | Por defecto
 | prefix-icon | prefix icon class | string | — | — |
 | suffix-icon | suffix icon class | string | — | — |
 | hide-loading | si se debe ocultar el icono de loading en la búsqueda remota | boolean | — | false |
+| popper-append-to-body | whether to append the dropdown to body. If the positioning of the dropdown is wrong, you can try to set this prop to false | boolean | - | true |
 
 ### Autocomplete Slots
 
