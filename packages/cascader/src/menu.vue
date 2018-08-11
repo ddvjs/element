@@ -364,6 +364,7 @@
             ]}
             ref="wrapper"
           >
+            <div x-arrow class="popper__arrow"></div>
             {menus}
           </div>
         </transition>

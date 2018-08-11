@@ -1,71 +1,11 @@
-import objectAssign from 'element-ui/src/utils/merge';
-import deepmerge from 'deepmerge';
-import { PopupManager } from 'element-ui/src/utils/popup';
-import PopperUtils from 'popper.js/dist/esm/popper-utils';
-import PopperJS from 'popper.js';
+import Vue from 'vue';
+import {
+  PopupManager
+} from 'element-ui/src/utils/popup';
 
+const PopperJS = Vue.prototype.$isServer ? function() {} : require('./popper');
 const stop = e => e.stopPropagation();
 
-function computeArrow(data, options) {
-  if (!PopperUtils.isModifierRequired(data.instance.modifiers, 'arrow', 'keepTogether')) {
-    return data;
-  }
-
-  let arrowElement = options.element;
-
-  if (typeof arrowElement === 'string') {
-    arrowElement = data.instance.popper.querySelector(arrowElement);
-
-    if (!arrowElement) {
-      return data;
-    }
-  } else {
-    if (!data.instance.popper.contains(arrowElement)) {
-      console.warn(
-        'WARNING: `arrow.element` must be child of its popper element!'
-      );
-      return data;
-    }
-  }
-
-  const placement = data.placement.split('-')[0];
-  const { popper, reference } = data.offsets;
-  const isVertical = ['left', 'right'].indexOf(placement) !== -1;
-
-  const len = isVertical ? 'height' : 'width';
-  const sideCapitalized = isVertical ? 'Top' : 'Left';
-  const side = sideCapitalized.toLowerCase();
-  const altSide = isVertical ? 'left' : 'top';
-  const opSide = isVertical ? 'bottom' : 'right';
-  const arrowElementSize = PopperUtils.getOuterSizes(arrowElement)[len];
-
-  if (reference[opSide] - arrowElementSize < popper[side]) {
-    data.offsets.popper[side] -=
-      popper[side] - (reference[opSide] - arrowElementSize);
-  }
-  if (reference[side] + arrowElementSize > popper[opSide]) {
-    data.offsets.popper[side] +=
-      reference[side] + arrowElementSize - popper[opSide];
-  }
-  data.offsets.popper = PopperUtils.getClientRect(data.offsets.popper);
-  // use arrowOffset to compute center
-  const center = reference[side] + (this.arrowOffset || (reference[len] / 2 - arrowElementSize / 2));
-
-  const css = PopperUtils.getStyleComputedProperty(data.instance.popper);
-  const popperMarginSide = parseFloat(css[`margin${sideCapitalized}`], 10);
-  const popperBorderSide = parseFloat(css[`border${sideCapitalized}Width`], 10);
-  let sideValue = center - data.offsets.popper[side] - popperMarginSide - popperBorderSide;
-  // adjust side Value
-  sideValue = Math.max(Math.min(popper[len] - arrowElementSize - 8, sideValue), 8);
-
-  data.arrowElement = arrowElement;
-  data.offsets.arrow = {
-    [side]: Math.round(sideValue),
-    [altSide]: ''
-  };
-
-  return data;
-}
 /**
  * @param {HTMLElement} [reference=$refs.reference] - The reference element used to position the popper.
  * @param {HTMLElement} [popper=$refs.popper] - The HTML element used as popper, or a configuration used to generate the popper.
@@ -74,7 +14,7 @@ function computeArrow(data, options) {
  * @param {Boolean} [visible=false] Visibility of the popup element.
  * @param {Boolean} [visible-arrow=false] Visibility of the arrow, no style.
  */
-export const BasePopper = {
+export default {
   props: {
     transformOrigin: {
       type: [Boolean, String],
@@ -84,14 +24,17 @@ export const BasePopper = {
       type: String,
       default: 'bottom'
     },
-    reference: HTMLElement,
-    popper: HTMLElement,
-    boundariesElement: [String, HTMLElement],
-    value: Boolean,
-    visibleArrow: {
-      type: Boolean,
-      default: true
+    boundariesPadding: {
+      type: Number,
+      default: 5
     },
+    reference: {},
+    popper: {},
+    offset: {
+      default: 0
+    },
+    value: Boolean,
+    visibleArrow: Boolean,
     arrowOffset: {
       type: Number,
       default: 35
@@ -103,7 +46,9 @@ export const BasePopper = {
     popperOptions: {
       type: Object,
       default() {
-        return {};
+        return {
+          gpuAcceleration: false
+        };
       }
     }
   },
@@ -115,6 +60,24 @@ export const BasePopper = {
     };
   },
 
+  watch: {
+    value: {
+      immediate: true,
+      handler(val) {
+        this.showPopper = val;
+        this.$emit('input', val);
+      }
+    },
+
+    showPopper(val) {
+      if (this.disabled) {
+        return;
+      }
+      val ? this.updatePopper() : this.destroyPopper();
+      this.$emit('input', val);
+    }
+  },
+
   methods: {
     createPopper() {
       if (this.$isServer) return;
@@ -123,6 +86,7 @@ export const BasePopper = {
         return;
       }
 
+      const options = this.popperOptions;
       const popper = this.popperElm = this.popperElm || this.popper || this.$refs.popper;
       let reference = this.referenceElm = this.referenceElm || this.reference || this.$refs.reference;
 
@@ -139,30 +103,19 @@ export const BasePopper = {
         this.popperJS.destroy();
       }
 
-      const options = deepmerge({
-        placement: this.currentPlacement,
-        onCreate: () => {
-          this.resetTransformOrigin();
-          this.$nextTick(this.updatePopper);
-        },
-        modifiers: {
-          arrow: {
-            fn: computeArrow.bind(this)
-          },
-          computeStyle: { gpuAcceleration: false }
-        }
-      }, this.popperOptions);
-      if (this.boundariesElement) {
-        if (options.modifiers.preventOverflow) {
-          options.modifiers.preventOverflow.boundariesElement = this.boundariesElement;
-        } else {
-          options.modifiers.preventOverflow = {
-            boundariesElement: this.boundariesElement
-          };
-        }
-      }
+      options.placement = this.currentPlacement;
+      options.offset = this.offset;
+      options.arrowOffset = this.arrowOffset;
       this.popperJS = new PopperJS(reference, popper, options);
-      this.increaseZIndex();
+      this.popperJS.onCreate(_ => {
+        this.$emit('created', this);
+        this.resetTransformOrigin();
+        this.$nextTick(this.updatePopper);
+      });
+      if (typeof options.onUpdate === 'function') {
+        this.popperJS.onUpdate(options.onUpdate);
+      }
+      this.popperJS._popper.style.zIndex = PopupManager.nextZIndex();
       this.popperElm.addEventListener('click', stop);
     },
 
@@ -170,7 +123,9 @@ export const BasePopper = {
       const popperJS = this.popperJS;
       if (popperJS) {
         popperJS.update();
-        this.increaseZIndex();
+        if (popperJS._popper) {
+          popperJS._popper.style.zIndex = PopupManager.nextZIndex();
+        }
       } else {
         this.createPopper();
       }
@@ -197,15 +152,11 @@ export const BasePopper = {
         left: 'right',
         right: 'left'
       };
-      let placement = this.popperElm.getAttribute('x-placement').split('-')[0];
+      let placement = this.popperJS._popper.getAttribute('x-placement').split('-')[0];
       let origin = placementMap[placement];
-      this.popperElm.style.transformOrigin = typeof this.transformOrigin === 'string'
+      this.popperJS._popper.style.transformOrigin = typeof this.transformOrigin === 'string'
         ? this.transformOrigin
         : ['top', 'bottom'].indexOf(placement) > -1 ? `center ${ origin }` : `${ origin } center`;
-    },
-
-    increaseZIndex() {
-      this.popperElm.style.zIndex = PopupManager.nextZIndex();
     },
 
     appendArrow(element) {
@@ -247,48 +198,3 @@ export const BasePopper = {
     this.$options.beforeDestroy[0].call(this);
   }
 };
-
-/**
- * @param {String|Array} attrs - delete some attribues in props
- */
-export function customerPopper(attrs) {
-  if (!attrs) {
-    return BasePopper;
-  } else {
-    return Object.keys(BasePopper).reduce((val, key) => {
-      if (key === 'props') {
-        const props = objectAssign({}, BasePopper.props);
-        if (!Array.isArray(attrs)) {
-          attrs = [attrs];
-        }
-        attrs.forEach(attr => {
-          delete props[attr];
-        });
-        val.props = props;
-      } else {
-        val[key] = BasePopper[key];
-      }
-      return val;
-    }, {});
-  }
-}
-
-export default objectAssign({}, BasePopper, {
-  watch: {
-    value: {
-      immediate: true,
-      handler(val) {
-        this.showPopper = val;
-        this.$emit('input', val);
-      }
-    },
-
-    showPopper(val) {
-      if (this.disabled) {
-        return;
-      }
-      val ? this.updatePopper() : this.destroyPopper();
-      this.$emit('input', val);
-    }
-  }
-});

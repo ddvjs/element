@@ -48,6 +48,9 @@ export default {
     reference: {},
     popperClass: String,
     width: {},
+    visibleArrow: {
+      default: true
+    },
     arrowOffset: {
       type: Number,
       default: 0
