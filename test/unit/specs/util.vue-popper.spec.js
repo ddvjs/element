@@ -2,14 +2,12 @@ import VuePopper from 'element-ui/src/utils/vue-popper';
 import { createTest } from '../util';
 
 const Popper = Object.assign({}, VuePopper, {
-  render(h) {
-    return h('div');
-  },
-
-  created() {
-    this.popperElm = document.createElement('div');
-    this.referenceElm = document.createElement('div');
-  }
+  template: `
+  <div style="padding: 100px; height: 100px; width: 100px;">
+    <div ref="reference"></div>
+    <div ref="popper"></div>
+  </div>
+  `
 });
 
 const CleanPopper = Object.assign({}, VuePopper, {
@@ -19,6 +17,11 @@ const CleanPopper = Object.assign({}, VuePopper, {
 });
 
 describe('Utils:VuePopper', () => {
+
+  function describeVm(vm) {
+    vm.doDestroy();
+  }
+
   it('set popper not reference', () => {
     const vm = createTest(CleanPopper, {
       popper: document.createElement('div')
@@ -50,10 +53,14 @@ describe('Utils:VuePopper', () => {
     expect(vm.popperJS).to.not.exist;
   });
 
-  it('createPopper', () => {
-    const vm = createTest(Popper, { placement: 'top' });
+  it('createPopper', (done) => {
+    const vm = createTest(Popper, { placement: 'top' }, true);
     vm.createPopper();
-    expect(vm.popperJS._popper.getAttribute('x-placement')).to.equal('top');
+    setTimeout(() => {
+      expect(vm.popperElm.getAttribute('x-placement')).to.equal('top');
+      describeVm(vm);
+      done();
+    }, 10);
   });
 
   it('destroy popper when calling createPopper twice', () => {
@@ -80,7 +87,7 @@ describe('Utils:VuePopper', () => {
   it('doDestroy', () => {
     const vm = createTest(Popper, { placement: 'top' });
     vm.createPopper();
-    expect(vm.popperJS._popper.getAttribute('x-placement')).to.equal('top');
+    expect(vm.popperElm.getAttribute('x-placement')).to.equal('top');
     vm.doDestroy();
     expect(vm.popperJS).to.not.exist;
   });
@@ -100,7 +107,7 @@ describe('Utils:VuePopper', () => {
 
     vm.createPopper();
     vm2.createPopper();
-    expect(vm.popperJS._popper.getAttribute('x-placement')).to.equal('bottom-start');
+    expect(vm.popperElm.getAttribute('x-placement')).to.equal('bottom-start');
     expect(vm2.popperJS).to.not.exist;
   });
 
@@ -110,7 +117,7 @@ describe('Utils:VuePopper', () => {
     });
 
     vm.createPopper();
-    expect(vm.popperJS._popper.querySelector('div[x-arrow]')).to.exist;
+    expect(vm.popperElm.querySelector('div[x-arrow]')).to.exist;
   });
 
   it('update showPopper', done => {
@@ -127,12 +134,16 @@ describe('Utils:VuePopper', () => {
     }, 50);
   });
 
-  it('resetTransformOrigin', () => {
+  it('resetTransformOrigin', (done) => {
     const vm = createTest(Popper, {
       placement: 'left'
-    });
+    }, true);
     vm.createPopper();
-    expect(vm.popperJS._popper.style.transformOrigin).to.include('right center');
+    setTimeout(() => {
+      expect(vm.popperElm.style.transformOrigin).to.include('right center');
+      describeVm(vm);
+      done();
+    }, 10);
   });
 
   it('appendArrow', () => {
@@ -143,7 +154,7 @@ describe('Utils:VuePopper', () => {
     vm.createPopper();
     expect(vm.appended).to.true;
     vm.appendArrow();
-    expect(vm.popperJS._popper.querySelector('[x-arrow]')).to.exist;
+    expect(vm.popperElm.querySelector('[x-arrow]')).to.exist;
     expect(vm.appended).to.true;
   });
 
@@ -157,7 +168,7 @@ describe('Utils:VuePopper', () => {
     });
     expect(vm.appended).to.empty;
     vm.createPopper();
-    expect(vm.popperJS._popper.querySelector('[x-arrow][_v-110]')).to.exist;
+    expect(vm.popperElm.querySelector('[x-arrow][_v-110]')).to.exist;
   });
 
   it('appendToBody set false', () => {

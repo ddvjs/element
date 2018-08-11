@@ -44,7 +44,6 @@
 
 <script type="text/babel">
   import Popper from 'element-ui/src/utils/vue-popper';
-  import { PopupManager } from 'element-ui/src/utils/popup';
   import Locale from 'element-ui/src/mixins/locale';
   import Clickoutside from 'element-ui/src/utils/clickoutside';
   import Dropdown from './dropdown';
@@ -191,13 +190,6 @@
           Dropdown.close(this);
         }
       });
-    },
-    watch: {
-      showPopper(val) {
-        if (val === true && parseInt(this.popperJS._popper.style.zIndex, 10) < PopupManager.zIndex) {
-          this.popperJS._popper.style.zIndex = PopupManager.nextZIndex();
-        }
-      }
     }
   };
 </script>
